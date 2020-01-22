@@ -122,10 +122,10 @@ Baby.prototype.play = function() {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. this does not refer to the function itself, rather it refers to the context of the execution
-  2. 
-  3. 
-  4. 
+  1. The this keyword on global scope refers to the global object, i.e. when it is outside of any function: Global Binding
+  2. The this keyword is bound to a method when the method is invoked: Implicit Binding
+  3. The this keyword can be bound to different objects using .call(), or .apply(), etc.: explicit Binding
+  4. The this keyword will be bound to objects using the new keyword when the object is created: Constructor Calls
 */
 
 
