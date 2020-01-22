@@ -39,8 +39,28 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
+function Person(name, age) {
 
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+}
+
+Person.prototype.eat = function(food){
+  let full = 10;
+ if (full > this.stomach.length){
+   this.stomach.push(food)
+ } else if (this.stomach.length >= full){
+   return "too full!";
+ }
+}
+
+Person.prototype.poop = function(){
+  this.stomach.splice(0, this.stomach.length)
+}
+
+Person.prototype.toString = function(){
+  return (`${this.name}, ${this.age}`)
 }
 
 /*
@@ -57,7 +77,24 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+function Car(model, milesPerGallon) {
+
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+
+}
+
+Car.prototype.fill = function(gallons){
+  this.tank += gallons;
+}
+
+Car.prototype.drive = function(distance){
+  this.odometer += distance;
+
+  this.tank -= distance/this.milesPerGallon;
+
 
 }
 
@@ -68,18 +105,27 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age)
+  this.favoriteToy = favoriteToy;
+  
 }
+
+Baby.prototype = Object.create(Person.prototype)
+
+Baby.prototype.play = function() {
+  return `Playing with ${this.favoriteToy}`
+}
+
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. The this keyword on global scope refers to the global object, i.e. when it is outside of any function: Global Binding
+  2. The this keyword is bound to a method when the method is invoked: Implicit Binding
+  3. The this keyword can be bound to different objects using .call(), or .apply(), etc.: explicit Binding
+  4. The this keyword will be bound to objects using the new keyword when the object is created: Constructor Calls
 */
 
 
